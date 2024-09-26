@@ -127,6 +127,7 @@ body {
 .python-html-output {
   font-size: 0.7rem;
   overflow: auto;
+  padding-bottom: 10px; /* prevent scrollbar to stay on front of the 'x rows * y columns' text */
 }
 
 .python-html-output thead {

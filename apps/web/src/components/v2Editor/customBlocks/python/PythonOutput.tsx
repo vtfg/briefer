@@ -15,6 +15,7 @@ import useResettableState from '@/hooks/useResettableState'
 import { downloadFile } from '@/utils/file'
 import debounce from 'lodash.debounce'
 import { PythonBlock } from '@briefer/editor'
+import ScrollBar from '@/components/ScrollBar'
 
 interface Props {
   className?: string
@@ -78,7 +79,7 @@ export function PythonOutputs(props: Props) {
   return (
     <div className={props.className}>
       {props.outputs.slice(0, rendered).map((output, i) => (
-        <div
+        <ScrollBar
           key={i}
           className={clsx(
             ['plotly'].includes(output.type) ? 'flex-grow' : '',
@@ -94,7 +95,7 @@ export function PythonOutputs(props: Props) {
             isDashboardView={props.isDashboardView}
             blockId={props.blockId}
           />
-        </div>
+        </ScrollBar>
       ))}
     </div>
   )
@@ -224,10 +225,9 @@ function HTMLOutput(props: { output: PythonHTMLOutput }) {
   )
 
   return (
-    <div
-      className="python-html-output printable-block"
-      dangerouslySetInnerHTML={{ __html: clean }}
-    />
+    <ScrollBar className="python-html-output printable-block">
+      <div dangerouslySetInnerHTML={{ __html: clean }} />
+    </ScrollBar>
   )
 }
 
